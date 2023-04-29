@@ -45,33 +45,42 @@ function App() {
           <input type="text" name="search" value={searchVal} onChange={e => setSearchVal(e.target.value)} />
         </label><br />
         <input type="submit" value="Search" />
-        <table>
-          <tr>
-            <th>Subreddit</th>
-            <th>Author</th>
-            <th>Date Created</th>
-            <th>Title</th>
-            <th>Content</th>
-          </tr>
-          { redditData.map((item) => {
-            return (
-              <tr>
-                <td>{item.data.subreddit_name_prefixed}</td>
-                <td>{item.data.author}</td>
-                <td>{item.data.created_utc}</td>
-                <td>{item.data.title.split(" ").splice(0,10).join(" ")}...</td>
-                <td>
-                    {item.data.selftext ? (
-                      <p>{item.data.selftext}</p>
-                    ) : (
-                      <img src={item.data.thumbnail} />
-                    )}
-                </td>
-              </tr>
-              );
-          }) }
-        </table>
       </form>
+
+      <div id="holder">
+
+        {
+          /**  
+           Different types of Reddit posts
+            Text : Undefined, Self
+            Image : Image
+            Video : hosted:video
+
+          **/
+        }
+
+        { redditData.map((item) => {
+          return (
+            <div className={`redditItem ${item.data.post_hint}`} key={item.data.id}>
+              <span>{item.data.subreddit_name_prefixed}</span><br />
+              <span>{item.data.author}</span><br />
+              <span>{item.data.created_utc}</span><br />
+              <span>{item.data.title.split(" ").splice(0,10).join(" ")}...</span>
+              <div>
+                  {item.data.selftext ? (
+                    <p>{item.data.selftext}</p>
+                  ) : (
+                    <img src={item.data.thumbnail} />
+                  )}
+              </div>
+            </div>
+            );
+        }) }
+
+      </div>
+
+
+
     </div>
   );
 }

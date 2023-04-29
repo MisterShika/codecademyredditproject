@@ -1,0 +1,12 @@
+#holder{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.redditItem{
+    margin: 5px;
+    padding: 5px;
+    border: 2px solid orange;
+    border-radius: 10px;
+    background: lightgoldenrodyellow;
+}
